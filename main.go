@@ -14,13 +14,16 @@ var g = game.Game{}
 var menuTab *container.TabItem
 var gameTab *container.TabItem
 var scoreTab *container.TabItem
+var rulesTab *container.TabItem
 var tabs = container.NewAppTabs()
 var window = application.NewWindow("Poker score calculator")
 
 func main() {
 	menuTab = Menu()
+	rulesTab = container.NewTabItem("Правила", loadRules())
 	tabs.SetTabLocation(container.TabLocationTop)
 	tabs.Append(menuTab)
+	tabs.Append(rulesTab)
 	window.SetContent(tabs)
 	window.Resize(fyne.NewSize(400, 300))
 	window.ShowAndRun()
@@ -29,7 +32,7 @@ func main() {
 func NewGame() {
 	gameTab = container.NewTabItem("Гра", BidForms())
 	scoreTab = Score()
-	tabs.SetItems([]*container.TabItem{menuTab, gameTab, scoreTab})
+	tabs.SetItems([]*container.TabItem{menuTab, gameTab, scoreTab, rulesTab})
 	tabs.Select(gameTab)
 }
 
